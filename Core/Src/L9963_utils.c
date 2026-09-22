@@ -287,6 +287,8 @@ L9963_Utils_StatusTypeDef L9963E_utils_balance_cells(void) {
             e = L9963E_read_balancing_state(&hl9963e, device_id, &eof_bal, &bal_on);
         } while (e != L9963E_OK || ((eof_bal != 1) || (bal_on != 0)));
     }
+
+    //VERSIONE VELOCE PER CONTROLLARE IL TERMINE BILANCIAMENTO QUIDNI NON SINGOLARMENTE
     // while ((eof_bal != N_SLAVES) && (bal_on != 0)) {
     //     if (L9963E_DRV_burst_cmd(
     //             &hl9963e.drv_handle, L9963E_DEVICE_BROADCAST, burst_cmd, burst_data, L9963E_BURST_0x78_LEN, 10) !=

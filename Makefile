@@ -76,7 +76,7 @@ Core/Src/bms_hv_fsm.c \
 Core/Src/bms_hv_fsm_weak.c \
 Lib/L9963E/src/L9963E.c \
 Lib/L9963E/src/L9963E_drv.c \
-Lib/stmlibs/fsm/fsm.c	\ \
+Lib/stmlibs/fsm/fsm.c \
 Lib/stmlibs/timebase/timebase.c \
 Core/Src/tim.c \
 Lib/stmlibs/timer_utils/timer_utils.c

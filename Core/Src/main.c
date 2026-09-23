@@ -87,10 +87,6 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-  
-    data_reading_timebase_init();
-    ntc_init();
-    
     
   /* USER CODE END Init */
 
@@ -115,8 +111,14 @@ int main(void)
     Stat1_LED_On(); // Turn on the LED
   /* USER CODE END 2 */
 
+  HAL_Delay(50);
+
   /* USER CODE BEGIN Init */
     L9963E_utils_init();
+
+    data_reading_timebase_init();
+    ntc_init();
+    
     //fsm
     uint8_t n_events = 0;
 

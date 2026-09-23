@@ -16,7 +16,7 @@ void data_reading_timebase_init(void) {
   
     TIMEBASE_init(&data_reading_timebase_handle, &htim6, 1000);
   
-    TIMEBASE_add_interval(&data_reading_timebase_handle, 10000, &interval);
+    TIMEBASE_add_interval(&data_reading_timebase_handle, 100, &interval);
     TIMEBASE_register_callback(&data_reading_timebase_handle, interval, data_reading_l9963e_cb);
 
     // Ci stiamo assicurando di chiamare il timer fisciamente

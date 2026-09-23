@@ -27,7 +27,7 @@ const L9963E_IfTypeDef interface_L = {.L9963E_IF_DelayMs       = DelayMs,
 // TRYING TO FIGURE OUT HOW TO INITIALIZE THE DRIVER HANDLE
 void L9963E_utils_init(void) {
     L9963E_init(&hl9963e, interface_H, N_SLAVES);
-    L9963E_addressing_procedure(&hl9963e, 0b11, 1, 0b00, 1);
+    L9963E_addressing_procedure(&hl9963e, 0b11, 0, 0, 1);
 
     /** Configuring the chips by writing to the registers, since each chip 
         has the same configuration, we are using Broadcast access 

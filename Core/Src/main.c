@@ -165,7 +165,7 @@ void SystemClock_Config(void)
   * in the RCC_OscInitTypeDef structure.
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE; //HSE sta per High Speed External 
-  RCC_OscInitStruct.HSIState = RCC_HSE_ON; //Accessione del HSE quindi del quarzo esterno
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON; //Accessione del HSE quindi del quarzo esterno
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON; //Phase-Locked Loop, ovvero il moltiplicatore di giri del IC
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE; //Colleghiamo il quarzo esterno all'ingresso del PLL
   RCC_OscInitStruct.PLL.PLLM = 4;

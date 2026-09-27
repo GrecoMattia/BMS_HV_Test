@@ -89,29 +89,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-    L9963E_utils_init();
-    //fsm
-    uint8_t n_events = 0;
-
-    if (FSM_BMS_HV_init(&hfsm, n_events, run_callback_1, transition_callback_1) != STMLIBS_OK) {
-        error_code = 2;
-    }
-    if (FSM_start(&hfsm) != STMLIBS_OK) {
-        error_code = 2;
-    }
-    if (FSM_get_state(&hfsm) == FSM_BMS_HV_active_idle){
-      // If first state is active idle then we good
-      Warn_LED_On();
-      HAL_Delay(1000);
-      Warn_LED_Off();
-    } else {
-      Err_LED_On();
-    }
-
-    data_reading_timebase_init();
-    ntc_init();
-    
-    
+    // NOTA: nessun codice utente qui — le periferiche (GPIO, SPI) non sono ancora inizializzate
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -132,7 +110,33 @@ int main(void)
   MX_USART3_UART_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
-    Stat1_LED_On(); // Turn on the LED
+    Stat1_LED_On(); // Turn on the LED to show peripherals are ready
+
+    // Attesa stabilizzazione hardware (L9963T power-on) — stessa logica del branch dev
+    HAL_Delay(50);
+
+    // Inizializzazione L9963E — DEVE essere dopo tutte le MX_*_Init()
+    L9963E_utils_init();
+
+    // FSM
+    uint8_t n_events = 0;
+    if (FSM_BMS_HV_init(&hfsm, n_events, run_callback_1, transition_callback_1) != STMLIBS_OK) {
+        error_code = 2;
+    }
+    if (FSM_start(&hfsm) != STMLIBS_OK) {
+        error_code = 2;
+    }
+    if (FSM_get_state(&hfsm) == FSM_BMS_HV_active_idle) {
+        // Primo stato = active_idle: tutto OK
+        Warn_LED_On();
+        HAL_Delay(1000);
+        Warn_LED_Off();
+    } else {
+        Err_LED_On();
+    }
+
+    data_reading_timebase_init();
+    ntc_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
